@@ -6,9 +6,9 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 const links = [
-  { href: "/", label: "About" },
   { href: "/blog", label: "Blog" },
   { href: "/projects", label: "Projects" },
+  { href: "https://www.linkedin.com/in/zach-johnston/", label: "LinkedIn", external: true },
 ];
 
 export function Nav() {
@@ -25,19 +25,32 @@ export function Nav() {
           Zach Johnston
         </Link>
         <div className="flex items-center gap-6">
-          {links.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="text-sm transition-colors"
-              style={{
-                color: pathname === href ? "var(--foreground)" : "var(--muted)",
-                fontWeight: pathname === href ? "500" : "400",
-              }}
-            >
-              {label}
-            </Link>
-          ))}
+          {links.map(({ href, label, external }) =>
+            external ? (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm transition-colors"
+                style={{ color: "var(--muted)", fontWeight: "400" }}
+              >
+                {label}
+              </a>
+            ) : (
+              <Link
+                key={href}
+                href={href}
+                className="text-sm transition-colors"
+                style={{
+                  color: pathname === href ? "var(--foreground)" : "var(--muted)",
+                  fontWeight: pathname === href ? "500" : "400",
+                }}
+              >
+                {label}
+              </Link>
+            )
+          )}
           {mounted && (
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
