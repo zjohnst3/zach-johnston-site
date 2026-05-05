@@ -1,21 +1,32 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <div className="space-y-16">
       {/* Hero */}
-      <section className="space-y-4">
-        <h1 className="text-4xl font-semibold tracking-tight" style={{ color: "var(--foreground)" }}>
-          Zach Johnston
-        </h1>
-        <p className="text-lg" style={{ color: "var(--muted)" }}>
-          Startup operator and ex-VC.
-        </p>
-        {/* Tagline placeholder — add your one-liner here */}
+      <section className="hero-glow pt-4 pb-2">
+        <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-8">
+          <div className="space-y-3 flex-1">
+            <h1 className="text-4xl font-semibold tracking-tight" style={{ color: "var(--foreground)" }}>
+              Zach Johnston
+            </h1>
+            <p className="text-lg" style={{ color: "var(--muted)" }}>
+              Startup operator and ex-VC.
+            </p>
+          </div>
+          <div className="shrink-0">
+            <div
+              className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden"
+              style={{ boxShadow: "0 0 0 3px var(--background), 0 0 0 5px var(--border)" }}
+            >
+              <Image src="/avatar.jpg" alt="Zach Johnston" fill className="object-cover" priority />
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* Divider */}
-      <hr style={{ borderColor: "var(--border)" }} />
+      <div className="divider" />
 
       {/* Bio */}
       <section className="space-y-4">
@@ -34,8 +45,7 @@ export default function Home() {
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Link
           href="/blog"
-          className="group p-6 rounded-xl border transition-colors"
-          style={{ borderColor: "var(--border)", backgroundColor: "var(--card)" }}
+          className="group p-6 rounded-xl card-gradient"
         >
           <div className="flex items-center justify-between mb-2">
             <span className="font-medium text-sm" style={{ color: "var(--foreground)" }}>Writing</span>
@@ -62,8 +72,7 @@ export default function Home() {
 
         <Link
           href="/projects"
-          className="group p-6 rounded-xl border transition-colors"
-          style={{ borderColor: "var(--border)", backgroundColor: "var(--card)" }}
+          className="group p-6 rounded-xl card-gradient"
         >
           <div className="flex items-center justify-between mb-2">
             <span className="font-medium text-sm" style={{ color: "var(--foreground)" }}>Projects</span>

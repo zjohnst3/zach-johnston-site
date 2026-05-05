@@ -7,6 +7,8 @@
   --border: #E5DDD3;
   --accent: #8C7B6B;
   --card: #F5EFE6;
+  --hero-glow: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(140, 123, 107, 0.18) 0%, transparent 70%);
+  --grain-opacity: 0.035;
 }
 
 .dark {
@@ -16,6 +18,8 @@
   --border: #2E2B28;
   --accent: #A8978A;
   --card: #242120;
+  --hero-glow: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(168, 151, 138, 0.12) 0%, transparent 70%);
+  --grain-opacity: 0.055;
 }
 
 @theme inline {
@@ -31,4 +35,64 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   transition: background-color 0.2s ease, color 0.2s ease;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+.hero-glow {
+  position: relative;
+}
+
+.hero-glow::before {
+  content: "";
+  position: absolute;
+  inset: -120px -100px 0 -100px;
+  background: var(--hero-glow);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border) 20%, var(--border) 80%, transparent);
+  border: none;
+}
+
+.card-gradient {
+  background: linear-gradient(135deg, var(--card) 0%, var(--background) 100%);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.08);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card-gradient:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.08);
+  transform: translateY(-1px);
+}
+
+.dark .card-gradient {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.dark .card-gradient:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.nav-surface {
+  background-color: color-mix(in srgb, var(--background) 85%, transparent);
+}
+
+@supports not (background-color: color-mix(in srgb, red 50%, blue)) {
+  .nav-surface {
+    background-color: var(--background);
+  }
 }

@@ -21,10 +21,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <Nav />
-          <main className="max-w-3xl mx-auto px-6 py-16">
+          <main className="max-w-3xl mx-auto px-6 py-20 relative z-10">
             {children}
           </main>
-          <footer className="max-w-3xl mx-auto px-6 py-8 border-t" style={{ borderColor: "var(--border)" }}>
+          <footer className="max-w-3xl mx-auto px-6 py-8 border-t relative z-10" style={{ borderColor: "var(--border)" }}>
             <p className="text-sm" style={{ color: "var(--muted)" }}>
               © {new Date().getFullYear()} Zach Johnston
             </p>

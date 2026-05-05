@@ -19,7 +19,7 @@ export function Nav() {
   useEffect(() => setMounted(true), []);
 
   return (
-    <header className="sticky top-0 z-50 border-b" style={{ borderColor: "var(--border)", backgroundColor: "var(--background)" }}>
+    <header className="sticky top-0 z-50 border-b backdrop-blur-md nav-surface" style={{ borderColor: "var(--border)" }}>
       <nav className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className="font-semibold tracking-tight text-base" style={{ color: "var(--foreground)" }}>
           Zach Johnston
